@@ -1,0 +1,119 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply from: 'dependencies.gradle'
+
+android {
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    buildFeatures{
+        viewBinding = true
+    }
+    defaultConfig {
+        applicationId "com.madonasyombua.growwithgoogleteamproject"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+    packagingOptions {
+        // Exclude file to avoid
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+
+    }
+
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Please change versions in the project level build.gradle file
+    // and should you want to add a new dependency, follow the below pattern
+    //noinspection GradleCompatible
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.2.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'androidx.preference:preference:1.1.1'
+    // Test libraries
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //AhoyOnBoard library
+    implementation "com.codemybrainsout.onboarding:onboarder:$rootProject.ext.onBoarderVersion"
+    implementation "com.jonathanfinerty.once:once:$rootProject.ext.onceVersion"
+
+    // Butterknife
+    annotationProcessor "com.jakewharton:butterknife:$rootProject.ext.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterKnifeVersion"
+
+    // Dagger
+    implementation "com.google.dagger:dagger-android:$rootProject.ext.daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.ext.daggerVersion"
+
+
+    //RxJava & RxAndroid
+    implementation "io.reactivex.rxjava3:rxjava:$rootProject.rxjavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+
+    // if you use the support libraries
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+
+    // CircleImageView Lib
+    implementation "de.hdodenhof:circleimageview:$rootProject.ext.circleImageViewVersion"
+
+    // Facebook SDK
+    implementation "com.facebook.android:facebook-login:$rootProject.ext.facebookLoginVersion"
+
+    // Google Play
+    implementation 'com.google.android.gms:play-services-auth:11.8.0'
+
+    // Firebase
+    implementation "com.google.firebase:firebase-database:$rootProject.ext.playServicesVersion"
+    implementation "com.google.firebase:firebase-core:$rootProject.ext.playServicesVersion"
+    implementation "com.google.firebase:firebase-storage:$rootProject.ext.playServicesVersion"
+    implementation 'com.firebaseui:firebase-ui-database:0.4.1'
+
+    //Firebase SDK
+    implementation "com.google.firebase:firebase-auth:$rootProject.ext.playServicesVersion"
+    implementation "com.google.android.gms:play-services-auth:$rootProject.ext.playServicesVersion"
+
+    implementation 'com.google.android.gms:play-services-maps:11.8.0'
+
+    // Material SearchView
+    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+    implementation "androidx.core:core-ktx:1.3.1"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+
+}
+
+apply plugin: 'com.google.gms.google-services'
+
